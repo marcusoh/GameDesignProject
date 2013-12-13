@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class move : MonoBehaviour {
+	public Transform prefab;
 	public float speed=10f;
 	public float acceleration=1f;
 	public float gravity = -9.8f;
@@ -9,6 +10,7 @@ public class move : MonoBehaviour {
 	Vector2 newPos = new Vector2 (0f,0f);
 	public float TerminalVelocity=-20f;
 	private CharacterController controller;
+	public float pos = 0f;
 	void Start () {
 		controller = GetComponent<CharacterController>();
 //		GameManager.gameStarter+=gameStart;
@@ -18,7 +20,8 @@ public class move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		newPos.x = Input.GetAxis("Horizontal1")*(Time.deltaTime+.1f)*5f;
+		pos = Input.GetAxis("Horizontal1");
+		newPos.x = pos*(Time.deltaTime+.2f)*5f;
 		if(Input.GetButton("Jump1")){
 			if(controller.isGrounded){
 				newPos.y=jumpHeight;
@@ -30,5 +33,10 @@ public class move : MonoBehaviour {
 			
 		}
 		controller.Move (newPos);
+		if(Input.GetButtonDown("Player1Fire")){
+			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
+			Bullet bscript=b.GetComponent<Bullet>();
+
+		}
 	}
 }
