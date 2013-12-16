@@ -21,7 +21,7 @@ public class move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		pos = Input.GetAxis("Horizontal1");
-		newPos.x = pos*(Time.deltaTime+.2f)*5f;
+		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump1")){
 			if(controller.isGrounded){
 				newPos.y=jumpHeight;

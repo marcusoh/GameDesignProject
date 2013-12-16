@@ -20,7 +20,7 @@ public class Move2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		newPos.x = Input.GetAxis("Horizontal2")*(Time.deltaTime+.2f)*5f;
+		newPos.x = Input.GetAxis("Horizontal2")*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump2")){
 			if(controller.isGrounded){
 				newPos.y=jumpHeight;
@@ -34,7 +34,7 @@ public class Move2 : MonoBehaviour {
 		controller.Move (newPos);
 		if(Input.GetButtonDown("Player2Fire")){
 			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
-			Bullet bscript=b.GetComponent<Bullet>();
+			Bullet2 bscript=b.GetComponent<Bullet2>();
 		}
 	}
 }

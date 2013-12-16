@@ -1,12 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Move2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bullet2.cs">
     <Files>
-      <File FileName="Assets\move.cs" Line="13" Column="1" />
-      <File FileName="..\..\..\Endless Runner\Assets\Runner\Runner.cs" Line="20" Column="2" />
-      <File FileName="Assets\Move2.cs" Line="19" Column="1" />
+      <File FileName="Assets\Bullet2.cs" Line="19" Column="12" />
+      <File FileName="Assets\Bullet.cs" Line="19" Column="11" />
+      <File FileName="Assets\move.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Endless Runner\Assets\Runner\Runner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Move2.cs" Line="37" Column="11" />
       <File FileName="..\..\..\Endless Runner\Assets\Ground\GroundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bullet.cs" Line="12" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
