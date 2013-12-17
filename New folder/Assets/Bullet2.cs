@@ -20,6 +20,10 @@ public class Bullet2 : MonoBehaviour {
 			flightPos.x+=speed*Time.deltaTime+1f;
 			transform.localPosition = flightPos;
 		}
+		if(value2==0f){
+			flightPos.x+=speed*Time.deltaTime+1f;
+			transform.localPosition = flightPos;
+		}
 		
 	}
 	//void bulletmove(Vector2 Currentpos){

@@ -33,8 +33,8 @@ public class Move2 : MonoBehaviour {
 		}
 		controller.Move (newPos);
 		if(Input.GetButtonDown("Player2Fire")){
-			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
-			Bullet2 bscript=b.GetComponent<Bullet2>();
+			Transform c=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
+			Bullet2 bscript=c.GetComponent<Bullet2>();
 		}
 	}
 }
