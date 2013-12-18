@@ -1,1 +1,6 @@
 New Folder/Library
+New Folder/temp
+
+*.sln
+*.csproj
+*.unityproj

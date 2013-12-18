@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: e63327ae21869f04ea43a2cba6120280
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - RedHealth: {fileID: 13200000, guid: f11e510c3d1adab4d807b5039dcdd865, type: 2}
+  - GreenHealth: {fileID: 13200000, guid: 95b56288373ab724285db7145a481f44, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
