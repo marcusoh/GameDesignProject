@@ -20,7 +20,8 @@ public class Move2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		newPos.x = Input.GetAxis("Horizontal2")*(Time.deltaTime+.2f)*3f;
+		pos = Input.GetAxis("Horizontal2");
+		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump2")){
 			if(controller.isGrounded){
 				newPos.y=jumpHeight;
@@ -35,6 +36,11 @@ public class Move2 : MonoBehaviour {
 		if(Input.GetButtonDown("Player2Fire")){
 			Transform c=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet2 bscript=c.GetComponent<Bullet2>();
+		}
+		int lives=GUIManager.getRedLives();
+		if(lives==0){
+			Destroy(this.gameObject);//set to disable mesh renderer instead
+			Application.LoadLevel(0);//create a starting delegate that sets renderer to enabled and lives to 6 upon every start
 		}
 	}
 }

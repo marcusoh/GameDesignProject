@@ -36,6 +36,12 @@ public class move : MonoBehaviour {
 		if(Input.GetButtonDown("Player1Fire")){
 			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet bscript=b.GetComponent<Bullet>();
+
+		}
+		int lives=GUIManager.getGreenLives();
+		if(lives==0){
+			Destroy(this.gameObject);
+			Application.LoadLevel(0);
 		}
 	}
 }

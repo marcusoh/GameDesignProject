@@ -26,7 +26,10 @@ public class Bullet2 : MonoBehaviour {
 		}
 		
 	}
-	//void bulletmove(Vector2 Currentpos){
-	//	flightPos.x=speed*Time.deltaTime+.5f;
-	//	transform.localPosition.x=flightPos;
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.name==("Player")){
+			Destroy(this.gameObject);
+			GUIManager.setGreenLives ();
+		}
+	}
 }
