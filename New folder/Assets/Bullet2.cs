@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class Bullet2 : MonoBehaviour {
 	public float speed=10f;
 	public float acceleration=1f;
@@ -24,12 +23,12 @@ public class Bullet2 : MonoBehaviour {
 			flightPos.x+=speed*Time.deltaTime+1f;
 			transform.localPosition = flightPos;
 		}
-		
 	}
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.name==("Player")){
+			int number = (GUIManager.getGreenLives ()) - 1;
+			GUIManager.setGreenLives (number);
 			Destroy(this.gameObject);
-			GUIManager.setGreenLives ();
 		}
 	}
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class Move2 : MonoBehaviour {
+	public static GameObject platform2;
+	public static float counter;
 	public Transform prefab;
 	public float speed=10f;
 	public float acceleration=1f;
@@ -13,13 +14,15 @@ public class Move2 : MonoBehaviour {
 	public float pos = 0f;
 	void Start () {
 		controller = GetComponent<CharacterController>();
-		//		GameManager.gameStarter+=gameStart;
-		//		GameManager.gameEnder+=gameEnd;
-		//		enabled=false;
+		GUIManager.setRedLives (6);
+		counter=0;
+		platform2 = GameObject.Find("startPlatform1");
 	}
-	
-	// Update is called once per frame
 	void Update () {
+		counter++;
+		if(counter==30f){
+			platform2.gameObject.SetActive(false);
+		}
 		pos = Input.GetAxis("Horizontal2");
 		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump2")){
@@ -32,15 +35,19 @@ public class Move2 : MonoBehaviour {
 			newPos.y += gravity*Time.deltaTime;
 			
 		}
-		controller.Move (newPos);
 		if(Input.GetButtonDown("Player2Fire")){
 			Transform c=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet2 bscript=c.GetComponent<Bullet2>();
 		}
+		if(Input.GetButtonDown("Reset")){
+			Application.LoadLevel(0);
+		}
 		int lives=GUIManager.getRedLives();
 		if(lives==0){
-			Destroy(this.gameObject);//set to disable mesh renderer instead
-			Application.LoadLevel(0);//create a starting delegate that sets renderer to enabled and lives to 6 upon every start
+			Application.LoadLevel(2);
 		}
+	}
+	void FixedUpdate(){
+		controller.Move (newPos);
 	}
 }

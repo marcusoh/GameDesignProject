@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class move : MonoBehaviour {
+	public static GameObject platform1;
 	public Transform prefab;
+	public static float counter;
 	public float speed=10f;
 	public float acceleration=1f;
 	public float gravity = -9.8f;
@@ -13,13 +14,15 @@ public class move : MonoBehaviour {
 	public float pos = 0f;
 	void Start () {
 		controller = GetComponent<CharacterController>();
-//		GameManager.gameStarter+=gameStart;
-//		GameManager.gameEnder+=gameEnd;
-//		enabled=false;
+		GUIManager.setGreenLives (6);
+		counter=0;
+		platform1 = GameObject.Find("startPlatform2");
 	}
-	
-	// Update is called once per frame
 	void Update () {
+		counter++;
+		if(counter==30f){
+			platform1.gameObject.SetActive(false);
+		}
 		pos = Input.GetAxis("Horizontal1");
 		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump1")){
@@ -30,18 +33,21 @@ public class move : MonoBehaviour {
 		}
 		if(newPos.y>TerminalVelocity){
 			newPos.y += gravity*Time.deltaTime;
-			
 		}
-		controller.Move (newPos);
 		if(Input.GetButtonDown("Player1Fire")){
 			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet bscript=b.GetComponent<Bullet>();
-
+		}
+		if(Input.GetButtonDown("Reset")){
+			Application.LoadLevel(0);
 		}
 		int lives=GUIManager.getGreenLives();
 		if(lives==0){
-			Destroy(this.gameObject);
-			Application.LoadLevel(0);
+			Application.LoadLevel(2);
 		}
+
+	}
+	void FixedUpdate(){
+		controller.Move (newPos);
 	}
 }
