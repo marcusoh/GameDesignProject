@@ -5,23 +5,26 @@ public class Bullet : MonoBehaviour {
 	public float acceleration=1f;
 	public float value=0f;
 	Vector2 flightPos = new Vector2 (0f,0f);
+	public bool direction;
 	void Start () {
 		flightPos = transform.localPosition;
-		value=Input.GetAxis("Horizontal1");
+		//value=Input.GetAxis("Horizontal1");
 	}
 	void Update () {
-		if(value<0f){
-			flightPos.x-=speed*Time.deltaTime+1f;
-			transform.localPosition = flightPos;
-		}
-		if(value>0f){
+		if(direction){
+		//if(value<0f){
 			flightPos.x+=speed*Time.deltaTime+1f;
 			transform.localPosition = flightPos;
 		}
-		if(value==0f){
+		if(!direction){
+		//if(value>0f){
 			flightPos.x-=speed*Time.deltaTime+1f;
 			transform.localPosition = flightPos;
 		}
+		/*if(value==0f){
+			flightPos.x-=speed*Time.deltaTime+1f;
+			transform.localPosition = flightPos;
+		}*/
 	}
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.name==("Player2")){
@@ -30,4 +33,5 @@ public class Bullet : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 	}
+
 }

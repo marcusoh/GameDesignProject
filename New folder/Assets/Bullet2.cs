@@ -5,22 +5,21 @@ public class Bullet2 : MonoBehaviour {
 	public float acceleration=1f;
 	public float value2=0f;
 	Vector2 flightPos = new Vector2 (0f,0f);
+	public bool direction;
 	void Start () {
 		flightPos = transform.localPosition;
-		value2=Input.GetAxis ("Horizontal2");
+
 	}
 	void Update () {
 		
-		if(value2<0f){
+		if(direction){
+	
+			flightPos.x+=speed*Time.deltaTime+1f;
+			transform.localPosition = flightPos;
+		}
+		if(!direction){
+
 			flightPos.x-=speed*Time.deltaTime+1f;
-			transform.localPosition = flightPos;
-		}
-		if(value2>0f){
-			flightPos.x+=speed*Time.deltaTime+1f;
-			transform.localPosition = flightPos;
-		}
-		if(value2==0f){
-			flightPos.x+=speed*Time.deltaTime+1f;
 			transform.localPosition = flightPos;
 		}
 	}

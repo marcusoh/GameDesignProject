@@ -12,6 +12,7 @@ public class move : MonoBehaviour {
 	public float TerminalVelocity=-20f;
 	private CharacterController controller;
 	public float pos = 0f;
+	public bool isRight;
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		GUIManager.setGreenLives (6);
@@ -24,6 +25,12 @@ public class move : MonoBehaviour {
 			platform1.gameObject.SetActive(false);
 		}
 		pos = Input.GetAxis("Horizontal1");
+		if(pos > 0){
+			isRight = true;
+		}
+		else if(pos <0){
+			isRight = false;
+		}
 		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump1")){
 			if(controller.isGrounded){
@@ -37,13 +44,14 @@ public class move : MonoBehaviour {
 		if(Input.GetButtonDown("Player1Fire")){
 			Transform b=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet bscript=b.GetComponent<Bullet>();
+			bscript.direction = isRight;
 		}
 		if(Input.GetButtonDown("Reset")){
 			Application.LoadLevel(0);
 		}
 		int lives=GUIManager.getGreenLives();
 		if(lives==0){
-			Application.LoadLevel(2);
+			Application.LoadLevel(3);
 		}
 
 	}

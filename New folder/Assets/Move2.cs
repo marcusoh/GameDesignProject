@@ -12,6 +12,7 @@ public class Move2 : MonoBehaviour {
 	public float TerminalVelocity=-20f;
 	private CharacterController controller;
 	public float pos = 0f;
+	public bool isRight;
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		GUIManager.setRedLives (6);
@@ -24,6 +25,12 @@ public class Move2 : MonoBehaviour {
 			platform2.gameObject.SetActive(false);
 		}
 		pos = Input.GetAxis("Horizontal2");
+		if(pos > 0){
+			isRight = true;
+		}
+		else if(pos <0){
+			isRight = false;
+		}
 		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump2")){
 			if(controller.isGrounded){
@@ -38,13 +45,14 @@ public class Move2 : MonoBehaviour {
 		if(Input.GetButtonDown("Player2Fire")){
 			Transform c=(Transform)Instantiate (prefab, transform.localPosition,transform.localRotation);
 			Bullet2 bscript=c.GetComponent<Bullet2>();
+			bscript.direction = isRight;
 		}
 		if(Input.GetButtonDown("Reset")){
 			Application.LoadLevel(0);
 		}
 		int lives=GUIManager.getRedLives();
 		if(lives==0){
-			Application.LoadLevel(2);
+			Application.LoadLevel(3);
 		}
 	}
 	void FixedUpdate(){
