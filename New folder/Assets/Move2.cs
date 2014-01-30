@@ -21,7 +21,7 @@ public class Move2 : MonoBehaviour {
 	}
 	void Update () {
 		counter++;
-		if(counter==30f){
+		if((counter==30f) && (platform2 != null)){
 			platform2.gameObject.SetActive(false);
 		}
 		pos = Input.GetAxis("Horizontal2");

@@ -13,27 +13,84 @@ public class move : MonoBehaviour {
 	private CharacterController controller;
 	public float pos = 0f;
 	public bool isRight;
+
+
+
+	float moveDir;
+	bool faceL=false;
+	Vector3 scale = new Vector3(1,1,1);
+	Animator animator;
+
+
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		GUIManager.setGreenLives (6);
 		counter=0;
 		platform1 = GameObject.Find("startPlatform2");
+
+		animator = this.gameObject.GetComponentInChildren<Animator> ();
 	}
 	void Update () {
+	
+		/*if(moveDir<0&& !faceL){
+			faceL=true;
+			scale.x*=1.0f;
+			transform.localScale=scale;
+		}
+		else if(moveDir>0){
+			faceL=false;
+			scale.x=-1.0f;
+			transform.localScale = scale;
+		}
+
+*/
+		/*if (Input.GetAxis("Horizontal")!=0){
+			animator.SetBool("isWalking",true);
+		}
+		if (Input.GetButtonUp("Horizontal")){
+			animator.SetBool("isWalking", false);
+		}
+		if (Input.GetButtonDown("Vertical")){
+			animator.SetTrigger ("jump");
+			animator.SetBool("isWalking",false);
+		}
+		*/
+
+
+		//
+		//
 		counter++;
-		if(counter==30f){
+		if((counter==30f) && (platform1 != null)){
 			platform1.gameObject.SetActive(false);
 		}
 		pos = Input.GetAxis("Horizontal1");
+		print (pos);
 		if(pos > 0){
 			isRight = true;
+			animator.SetBool("isWalking",true);
+			if(faceL){
+				faceL=false;
+				scale.x=-1.0f;
+				transform.localScale = scale;
+			}
 		}
 		else if(pos <0){
 			isRight = false;
+			animator.SetBool("isWalking",true);
+			if(!faceL){
+				faceL=true;
+				scale.x*=-1.0f;
+				transform.localScale=scale;
+			}
+		}
+		else if(pos == 0){
+			animator.SetBool("isWalking",false);
 		}
 		newPos.x = pos*(Time.deltaTime+.2f)*3f;
 		if(Input.GetButton("Jump1")){
 			if(controller.isGrounded){
+				animator.SetTrigger ("StartJump");
+				animator.SetBool("isWalking",false);
 				newPos.y=jumpHeight;
 				print ("Jumping");
 			}
